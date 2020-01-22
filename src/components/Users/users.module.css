@@ -1,0 +1,22 @@
+.userPhoto {
+    width: 100%;
+    height: auto;
+}
+.userPhotoContainer {
+    width: 100px;
+}
+
+.page {
+    display: inline-block;
+    padding: 0 4px;
+    font-weight: normal;
+    cursor:pointer;
+}
+.selectedPage {
+    font-weight: bold; 
+    padding: 0 4px;
+    
+}
+.spinner {
+    width: 300px;
+}

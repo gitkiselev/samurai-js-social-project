@@ -1,0 +1,16 @@
+
+  .content img {
+    width: 100%;
+  }
+  .catAvatar {
+    width: 150px;
+  }
+
+  .item {
+      color: greenyellow;
+  }
+  .avatarimg {
+    max-width: 100px;
+    border-radius: 50%;
+  }
+  
