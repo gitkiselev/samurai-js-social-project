@@ -7,6 +7,7 @@ import News from './components/News/News';
 import UsersContainer from './components/Users/UsersContainer';
 import Music from './components/Music/Music';
 import Settings from './components/Settings/Settings';
+import LoginPage from './components/Login/Login';
 import {Route} from 'react-router-dom';
 import './App.css';
 
@@ -27,6 +28,8 @@ function App(props) {
           <Route path='/news' component={News}/>
           <Route path='/music' component={Music}/>
           <Route path='/settings' component={Settings}/>
+          <Route path='/login' 
+            render={() => <LoginPage />} />
         </div>
       </div>
     
