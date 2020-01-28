@@ -20,7 +20,10 @@ const authReducer = (state = initialState, action) => {
             return state;
     } 
 }
-export const setAuthUserData = (userId, email, login) => ({type: SET_USER_DATA, payload: {userId, email, login}});
+export const setAuthUserData = (userId, email, login, isAuth) => ({
+    type: SET_USER_DATA, payload:
+        {userId, email, login, isAuth}
+});
 
 export const getAuthUserData = () => (dispatch) => {
     authAPI.me()
@@ -32,7 +35,13 @@ export const getAuthUserData = () => (dispatch) => {
                 }
             })
 }
+export const logout = () => async (dispatch) => {
+    let response = await authAPI.logout();
 
+    if (response.data.resultCode === 0) {
+        dispatch(setAuthUserData(null, null, null, false));
+    }
+}
 
 
 export default authReducer;
