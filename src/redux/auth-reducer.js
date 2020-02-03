@@ -31,17 +31,36 @@ export const getAuthUserData = () => (dispatch) => {
                 if(response.data.resultCode === 0) {
                     let {id, email, login} = response.data.data;
                     console.log(this)
-                    dispatch(setAuthUserData(id, email, login));
+                    dispatch(setAuthUserData(id, email, login, true));
                 }
             })
 }
-export const logout = () => async (dispatch) => {
-    let response = await authAPI.logout();
 
-    if (response.data.resultCode === 0) {
-        dispatch(setAuthUserData(null, null, null, false));
-    }
+export const login = (email, password, rememberMe) => (dispatch) => {
+    authAPI.login(email, password, rememberMe)
+            .then(response => {
+                if(response.data.resultCode === 0) {
+                    dispatch(setAuthUserData())
+                }
+            })
 }
+
+export const logout = () => (dispatch) => {
+    authAPI.logout()
+            .then(response => {
+                if(response.data.resultCode === 0) {
+                    dispatch(setAuthUserData(null, null, null, false))
+                }
+            })
+}
+
+// export const logout = () => async (dispatch) => {
+//     let response = await authAPI.logout();
+
+//     if (response.data.resultCode === 0) {
+//         dispatch(setAuthUserData(null, null, null, false));
+//     }
+// }
 
 
 export default authReducer;
