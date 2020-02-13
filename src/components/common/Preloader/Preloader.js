@@ -4,7 +4,6 @@ let Preloader = (props) => {
     return <div style={{backgroundColor: '#fff'}}>
             <img style={{width: '200px'}} src={preloader} alt='preloader' />
         </div>
-    
 }
 
 export default Preloader;

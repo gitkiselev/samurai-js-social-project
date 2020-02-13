@@ -9,11 +9,17 @@ import Music from './components/Music/Music';
 import Settings from './components/Settings/Settings';
 import LoginPage from './components/Login/Login';
 import {Route} from 'react-router-dom';
+import {connect} from "react-redux";
+import {getAuthUserData} from "./redux/auth-reducer";
+import {withRouter} from 'react-router-dom';
 import './App.css';
 
-function App(props) {
-  
-  return (
+class App extends React.Component {
+  componentDidMount() {
+    this.props.getAuthUserData();
+  }
+  render() {
+    return (
     
       <div className='app-wrapper'>
         <HeaderContainer />
@@ -34,7 +40,9 @@ function App(props) {
       </div>
     
   );
+  }
+  
 }
 
 
-export default App;
+export default withRouter(connect(null, {getAuthUserData})(App));
