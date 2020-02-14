@@ -10,17 +10,22 @@ import Settings from './components/Settings/Settings';
 import LoginPage from './components/Login/Login';
 import {Route} from 'react-router-dom';
 import {connect} from "react-redux";
-import {getAuthUserData} from "./redux/auth-reducer";
+import {initializeApp} from "./redux/app-reducer";
 import {withRouter} from 'react-router-dom';
+import {compose} from 'redux';
+import Preloader from './components/common/Preloader/Preloader';
 import './App.css';
 
 class App extends React.Component {
   componentDidMount() {
-    this.props.getAuthUserData();
+    this.props.initializeApp();
   }
   render() {
-    return (
+    if(!this.props.initialized) {
+      return <Preloader />
+    }
     
+    return (
       <div className='app-wrapper'>
         <HeaderContainer />
         <Navbar />
@@ -43,6 +48,9 @@ class App extends React.Component {
   }
   
 }
-
-
-export default withRouter(connect(null, {getAuthUserData})(App));
+const mapStateToProps = (state) => ({
+  initialized: state.app.initialized
+})
+export default compose(
+  withRouter,
+  connect(mapStateToProps, {initializeApp}))(App);
